@@ -35,6 +35,8 @@ jobs:
         ssh -o StrictHostKeyChecking=no ${{ secrets.USERNAME }}@${{ secrets.NON_DOCKER_HOST }} << 'EOF'
           cd /home/${{ secrets.USERNAME }}/docker-native-benchmark
           git pull
+          source /home/${{ secrets.USERNAME }}/venv/bin/activate
+          pip install -r requirements.txt
           sudo systemctl restart benchmark
         EOF
         end_time=$(date +%s)
